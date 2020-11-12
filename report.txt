@@ -1,0 +1,22 @@
+Thu Nov 12 06:50:14 +03 2020
+
+
+Nmap scan report for 192.168.100.1
+Nmap scan report for 192.168.100.2
+Nmap scan report for 192.168.100.13
+Nmap scan report for 192.168.100.14
+Nmap scan report for 192.168.100.18
+Nmap scan report for 192.168.100.41
+Nmap scan report for 192.168.100.254
+Nmap done: 256 IP addresses (7 hosts up) scanned in 3.06 seconds
+
+
+   Speedtest by Ookla
+
+     Server: Beltelecom Minsk branch - Minsk (id = 30453)
+        ISP: Beltelecom
+    Latency:     3.14 ms   (1.15 ms jitter)
+   Download:    17.75 Mbps (data used: 19.8 MB)                               
+     Upload:    34.90 Mbps (data used: 55.5 MB)                               
+Packet Loss:     0.0%
+ Result URL: https://www.speedtest.net/result/c/75a9ec84-c163-4157-9412-dd8b81538f0a
