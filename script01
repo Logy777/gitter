@@ -21,7 +21,7 @@ pipeline {
         stage('Packing project') {
             steps {
                 sh """
-                tar -zcvf /tmp2/package.tar.gz  ./
+                tar -zcvf /tmp/package.tar.gz  ./
                 """
                 deleteDir()
                 sh "cp /tmp/package.tar.gz  ./"
