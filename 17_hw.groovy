@@ -7,6 +7,7 @@ pipeline {
                 echo 'pinging tut.by..'
                 sh """
                 ping tut.by -c 3
+                /usr/sbin/ip a
                                 """
             }
         }
