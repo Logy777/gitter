@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone repository') { 
             steps { 
-                git url: 'ghttps://github.com/Logy777/invoicer.git'
+                git url: 'https://github.com/Logy777/invoicer.git'
             }
         }
         stage('Checking repository'){
