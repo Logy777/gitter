@@ -23,8 +23,8 @@ pipeline {
                 sh """
                 tar -zcvf /tmp/package2.tar.gz  ./
                 """
-              // deleteDir()
-              //  sh "mv /tmp/package.tar.gz  ./"
+                deleteDir()
+                sh "mv /tmp/package.tar.gz  ./"
             }
         }
         stage('Packing test') {
