@@ -10,7 +10,7 @@ pipeline {
                 stage('Clone repository 01') { 
                     steps { 
                         dir('01') {
-                            git url: 'git@github.com:Logy777/02.Git.Local.git'
+                            git url: 'https://github.com/Logy777/02.Git.Local.git'
                             sh """
                                 tar -zcvf /tmp/package_01.tar.gz  ./
                                 ls -l
@@ -23,7 +23,7 @@ pipeline {
                 stage('Clone repository 02') { 
                     steps { 
                         dir('02') {
-                            git url: 'git@github.com:Logy777/invoicer.git'
+                            git url: 'https://github.com/Logy777/invoicer.git'
                             sh """
                                 tar -zcvf /tmp/package_02.tar.gz  ./
                                 ls -l
