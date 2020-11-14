@@ -24,7 +24,7 @@ pipeline {
                 tar -zcvf /tmp/package.tar.gz  ./
                 """
                 deleteDir()
-                sh "mv /tmp/package.tar.gz  ./"
+                sh "cp /tmp/package.tar.gz  ./"
             }
         }
         stage('Packing test') {
