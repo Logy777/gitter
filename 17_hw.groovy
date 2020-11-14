@@ -2,9 +2,12 @@ pipeline {
     agent { label 'local_vagrant_node' }
 
     stages {
-        stage('Build') {
+        stage('01.Check_connection') {
             steps {
-                echo 'Building..'
+                echo 'pinging tut.by..'
+                sh """
+                ping tut.by -c 3
+                                """
             }
         }
         stage('Test') {
