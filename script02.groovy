@@ -16,7 +16,7 @@ pipeline {
                                 ls -l
                             """
                             deleteDir()
-                            sh "cp /tmp/package_01.tar.gz  ./"
+                            sh "mv /tmp/package_01.tar.gz  ./"
                         }
                     }
                 }
@@ -29,7 +29,7 @@ pipeline {
                                 ls -l
                             """
                             deleteDir()
-                            sh "cp /tmp/package_02.tar.gz  ./"
+                            sh "mv /tmp/package_02.tar.gz  ./"
                         }
                     }
                 }
