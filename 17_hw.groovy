@@ -9,6 +9,7 @@ pipeline {
                 ping tut.by -c 3
                 """
             }
+        }    
         stage('02.Show_interfaces') {
             steps {
                 echo 'show_interfaces..'
