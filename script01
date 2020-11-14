@@ -21,10 +21,10 @@ pipeline {
         stage('Packing project') {
             steps {
                 sh """
-                tar -zcvf /tmp/package.tar.gz  ./
+                tar -zcvf /tmp/package2.tar.gz  ./
                 """
-                deleteDir()
-                sh "cp /tmp/package.tar.gz  ./"
+              #  deleteDir()
+              #  sh "mv /tmp/package.tar.gz  ./"
             }
         }
         stage('Packing test') {
