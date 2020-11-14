@@ -1,5 +1,5 @@
 pipeline { 
-    agent local_vagrant_node
+    agent {local_vagrant_node}
     triggers { 
         cron('H */1 * * *')
     }
