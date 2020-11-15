@@ -73,6 +73,8 @@ pipeline {
                 git checkout master
                 git add report.txt
                 sudo git commit -m "report.txt upload"
+                git pull origin master
+                git merge origin/master
                 git push origin master
                 """
             }
