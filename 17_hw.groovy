@@ -66,6 +66,16 @@ pipeline {
                 """
             }
         }
+        stage('08.Add, Commit & Push report.txt to the GitHub repo') { 
+            steps { 
+                echo 'pushing the new report.txt..'
+                sh """
+                git add report.txt
+                git commit -m "report.txt upload"
+                git push origin master
+                """
+            }
+        }
         stage('Done message') {
             steps {
                 echo 'Done....'
