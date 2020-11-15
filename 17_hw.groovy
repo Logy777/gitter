@@ -71,7 +71,7 @@ pipeline {
                 echo 'pushing the new report.txt..'
                 sh """
                 git add report.txt
-                chmod 664 .git/COMMIT_EDITMSG
+                sudo chmod 664 .git/COMMIT_EDITMSG
                 git commit -m "report.txt upload"
                 git push origin master
                 """
