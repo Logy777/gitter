@@ -49,7 +49,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh """
-                speedtest
+                speedtest --accept-license
                 """
             }
         }
