@@ -24,9 +24,9 @@ pipeline {
                 sh """
                 sudo /bin/yum install nmap -y
                 date > report.txt
-                echo -e "\n" >> report.txt
-                nmap -sP 192.168.100.1/24 | grep -E "([0-9]{1,3}[\.]){3}[0-9]{1,3}|done" >> report.txt
-                echo -e "\n" >> report.txt
+                echo -e '\n' >> report.txt
+                nmap -sP 192.168.100.1/24 | grep -E '([0-9]{1,3}[\.]){3}[0-9]{1,3}|done' >> report.txt
+                echo -e '\n' >> report.txt
                 cat report.txt
                 """
             }
