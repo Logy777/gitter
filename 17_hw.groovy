@@ -72,7 +72,7 @@ pipeline {
                 sh """
                 git add report.txt
                 sudo chmod 664 .git/COMMIT_EDITMSG
-                git commit -m "report.txt upload"
+                sudo git commit -m "report.txt upload"
                 git push origin master
                 """
             }
