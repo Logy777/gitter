@@ -70,12 +70,11 @@ pipeline {
             steps { 
                 echo 'pushing the new report.txt..'
                 sh """
-                git checkout master
+                cp report.txt /var/lib/jenkins/reports
+                cd /var/lib/jenkins/reports
                 git add report.txt
-                sudo git commit -m "report.txt upload"
-                git pull origin master
-                git merge origin/master
-                git push origin master
+                git commit -m "report.txt uploaded"
+                git push origin main
                 """
             }
         }
