@@ -29,15 +29,17 @@ Fetching upstream changes from git@github.com:Logy777/gitter.git
  > git --version # 'git version 1.8.3.1'
 using GIT_SSH to set credentials j_deb_dock_github
  > git fetch --tags --progress git@github.com:Logy777/gitter.git +refs/heads/*:refs/remotes/origin/* # timeout=10
-Checking out Revision 895a283d7d1c0f5b53895332a60d7e6a8ad70508 (refs/remotes/origin/master)
-Commit message: "change the repo fo report.txt"
+Checking out Revision d0e8b30dbcde533ff652390d1bfb2f0780e91b0d (refs/remotes/origin/master)
+Commit message: "add cron and number of builds to store"
  > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 895a283d7d1c0f5b53895332a60d7e6a8ad70508 # timeout=10
+ > git checkout -f d0e8b30dbcde533ff652390d1bfb2f0780e91b0d # timeout=10
  > git rev-list --no-walk 895a283d7d1c0f5b53895332a60d7e6a8ad70508 # timeout=10
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] withEnv
+[Pipeline] {
+[Pipeline] ansiColor
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (01.Check_connection)
@@ -45,14 +47,14 @@ Commit message: "change the repo fo report.txt"
 pinging tut.by..
 [Pipeline] sh
 + ping tut.by -c 3
-PING tut.by (178.172.160.4) 56(84) bytes of data.
-64 bytes from 178-172-160-4.hosterby.com (178.172.160.4): icmp_seq=1 ttl=63 time=8.48 ms
-64 bytes from 178-172-160-4.hosterby.com (178.172.160.4): icmp_seq=2 ttl=63 time=4.75 ms
-64 bytes from 178-172-160-4.hosterby.com (178.172.160.4): icmp_seq=3 ttl=63 time=4.17 ms
+PING tut.by (178.172.160.2) 56(84) bytes of data.
+64 bytes from 178-172-160-2.hosterby.com (178.172.160.2): icmp_seq=1 ttl=63 time=3.96 ms
+64 bytes from 178-172-160-2.hosterby.com (178.172.160.2): icmp_seq=2 ttl=63 time=4.63 ms
+64 bytes from 178-172-160-2.hosterby.com (178.172.160.2): icmp_seq=3 ttl=63 time=4.53 ms
 
 --- tut.by ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2005ms
-rtt min/avg/max/mdev = 4.174/5.802/8.480/1.908 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 3.964/4.378/4.632/0.300 ms
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -70,7 +72,7 @@ show_interfaces..
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
     link/ether 52:54:00:4d:77:d3 brd ff:ff:ff:ff:ff:ff
     inet 10.0.2.15/24 brd 10.0.2.255 scope global noprefixroute dynamic eth0
-       valid_lft 56126sec preferred_lft 56126sec
+       valid_lft 51746sec preferred_lft 51746sec
     inet6 fe80::5054:ff:fe4d:77d3/64 scope link 
        valid_lft forever preferred_lft forever
 3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
@@ -94,7 +96,7 @@ installing nmap & scaning..
 [Pipeline] sh
 + sudo /bin/yum install nmap -y
 Loaded plugins: fastestmirror
-Determining fastest mirrors
+Loading mirror speeds from cached hostfile
  * base: ftp.byfly.by
  * extras: ftp.byfly.by
  * updates: ftp.byfly.by
@@ -104,6 +106,7 @@ Resolving Dependencies
 --> Finished Dependency Resolution
 
 Dependencies Resolved
+
 ================================================================================
  Package        Arch             Version                   Repository      Size
 ================================================================================
@@ -134,19 +137,17 @@ Complete!
 + grep -E '([0-9]{1,3}[\.]){3}[0-9]{1,3}|done'
 + echo -e '\n'
 + cat report.txt
-Sun Nov 15 19:59:33 +03 2020
+Sun Nov 15 21:12:31 +03 2020
 
 
 Nmap scan report for 192.168.100.1
-Nmap scan report for 192.168.100.2
-Nmap scan report for 192.168.100.3
 Nmap scan report for 192.168.100.13
 Nmap scan report for 192.168.100.14
 Nmap scan report for 192.168.100.18
 Nmap scan report for 192.168.100.26
 Nmap scan report for 192.168.100.41
 Nmap scan report for 192.168.100.254
-Nmap done: 256 IP addresses (9 hosts up) scanned in 7.52 seconds
+Nmap done: 256 IP addresses (7 hosts up) scanned in 2.83 seconds
 
 
 [Pipeline] }
@@ -162,7 +163,6 @@ Resolving Dependencies
 --> Running transaction check
 ---> Package nmap.x86_64 2:6.40-19.el7 will be erased
 --> Finished Dependency Resolution
-
 Dependencies Resolved
 
 ================================================================================
@@ -196,16 +196,16 @@ Complete!
 installing speedtest..
 [Pipeline] sh
 + wget https://bintray.com/ookla/rhel/rpm -O bintray-ookla-rhel.repo
---2020-11-15 19:59:46--  https://bintray.com/ookla/rhel/rpm
-Resolving bintray.com (bintray.com)... 75.126.208.206
-Connecting to bintray.com (bintray.com)|75.126.208.206|:443... connected.
+--2020-11-15 21:12:41--  https://bintray.com/ookla/rhel/rpm
+Resolving bintray.com (bintray.com)... 108.168.194.93
+Connecting to bintray.com (bintray.com)|108.168.194.93|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/plain]
 Saving to: 'bintray-ookla-rhel.repo'
 
-     0K                                                        4.89M=0s
+     0K                                                        10.0M=0s
 
-2020-11-15 19:59:47 (4.89 MB/s) - 'bintray-ookla-rhel.repo' saved [172]
+2020-11-15 21:12:42 (10.0 MB/s) - 'bintray-ookla-rhel.repo' saved [172]
 
 + sudo mv bintray-ookla-rhel.repo /etc/yum.repos.d/
 + sudo /bin/yum install speedtest -y
@@ -252,47 +252,45 @@ Complete!
 [Pipeline] echo
 Testing..
 [Pipeline] sh
++ speedtest --accept-license
 + tail -n 9
 + tee -a report.txt
-+ speedtest --accept-license
    Speedtest by Ookla
 
      Server: Beltelecom Minsk branch - Minsk (id = 30453)
         ISP: Beltelecom
-    Latency:     2.92 ms   (0.62 ms jitter)
+    Latency:     2.85 ms   (0.34 ms jitter)
 
-   Download:    30.63 Mbps (data used: 50.2 MB)                               
+   Download:    15.68 Mbps (data used: 19.3 MB)                               
 
-     Upload:    46.16 Mbps (data used: 20.8 MB)                               
-Packet Loss:     0.0%
- Result URL: https://www.speedtest.net/result/c/335eb0e5-1615-4e2d-9eec-116fef0ac678
+     Upload:    26.04 Mbps (data used: 44.3 MB)                               
+Packet Loss:     0.5%
+ Result URL: https://www.speedtest.net/result/c/23e5ec07-31ca-4041-ab01-199d10980ed3
 + cat report.txt
-Sun Nov 15 19:59:33 +03 2020
+Sun Nov 15 21:12:31 +03 2020
 
 
 Nmap scan report for 192.168.100.1
-Nmap scan report for 192.168.100.2
-Nmap scan report for 192.168.100.3
 Nmap scan report for 192.168.100.13
 Nmap scan report for 192.168.100.14
 Nmap scan report for 192.168.100.18
 Nmap scan report for 192.168.100.26
 Nmap scan report for 192.168.100.41
 Nmap scan report for 192.168.100.254
-Nmap done: 256 IP addresses (9 hosts up) scanned in 7.52 seconds
+Nmap done: 256 IP addresses (7 hosts up) scanned in 2.83 seconds
 
 
    Speedtest by Ookla
 
      Server: Beltelecom Minsk branch - Minsk (id = 30453)
         ISP: Beltelecom
-    Latency:     2.92 ms   (0.62 ms jitter)
+    Latency:     2.85 ms   (0.34 ms jitter)
 
-   Download:    30.63 Mbps (data used: 50.2 MB)                               
+   Download:    15.68 Mbps (data used: 19.3 MB)                               
 
-     Upload:    46.16 Mbps (data used: 20.8 MB)                               
-Packet Loss:     0.0%
- Result URL: https://www.speedtest.net/result/c/335eb0e5-1615-4e2d-9eec-116fef0ac678
+     Upload:    26.04 Mbps (data used: 44.3 MB)                               
+Packet Loss:     0.5%
+ Result URL: https://www.speedtest.net/result/c/23e5ec07-31ca-4041-ab01-199d10980ed3
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -308,6 +306,7 @@ Resolving Dependencies
 --> Running transaction check
 ---> Package speedtest.x86_64 0:1.0.0.2_1.5ae238b-1 will be erased
 --> Finished Dependency Resolution
+
 Dependencies Resolved
 
 ================================================================================
@@ -344,11 +343,11 @@ pushing the new report.txt..
 + cd /var/lib/jenkins/reports
 + git add report.txt
 + git commit -m 'report.txt uploaded'
-[main e900697] report.txt uploaded
- 1 file changed, 7 insertions(+), 6 deletions(-)
+[main e895589] report.txt uploaded
+ 1 file changed, 7 insertions(+), 9 deletions(-)
 + git push origin main
 To git@github.com:Logy777/reports.git
-   8b631cc..e900697  main -> main
+   e900697..e895589  main -> main
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -357,6 +356,8 @@ To git@github.com:Logy777/reports.git
 Done....
 [Pipeline] }
 [Pipeline] // stage
+[Pipeline] }
+[Pipeline] // ansiColor
 [Pipeline] }
 [Pipeline] // withEnv
 [Pipeline] }
