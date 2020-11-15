@@ -1,6 +1,12 @@
 pipeline {
     agent { label 'local_vagrant_node' }
-
+    triggers { 
+        cron('0 02 * * 7')
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr:'5'))
+        ansiColor('xterm')
+    }
     stages {
         stage('01.Check_connection') {
             steps {
