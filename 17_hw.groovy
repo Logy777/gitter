@@ -18,6 +18,23 @@ pipeline {
                 """
             }
         }
+        stage('03.Installing nmap, scaning') {
+            steps {
+                echo 'installing nmap & scaning..'
+                sh """
+                sudo /bin/yum install nmap -y
+                nmap -sP 192.168.100.1/24
+                """
+            }
+        }
+        stage('04.Removing nmap') {
+            steps {
+                echo 'removing nmap..'
+                sh """
+                sudo /bin/yum remove nmap -y
+                """
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'
