@@ -35,14 +35,35 @@ pipeline {
                 """
             }
         }
-        stage('Test') {
+        stage('05.Installing speedtest') {
             steps {
-                echo 'Testing..'
+                echo 'installing speedtest..'
+                sh """
+                wget https://bintray.com/ookla/rhel/rpm -O bintray-ookla-rhel.repo
+                sudo mv bintray-ookla-rhel.repo /etc/yum.repos.d/
+                sudo /bin/yum install speedtest -y
+                """
             }
         }
-        stage('Deploy') {
+        stage('06.Speed testing') {
             steps {
-                echo 'Deploying....'
+                echo 'Testing..'
+                sh """
+                speedtest
+                """
+            }
+        }
+        stage('07.Removing speedtest') {
+            steps {
+                echo 'removing speedtest..'
+                sh """
+                rpm -qa | grep speedtest | xargs -I {} sudo /bin/yum -y remove {}
+                """
+            }
+        }
+        stage('Done message') {
+            steps {
+                echo 'Done....'
             }
         }
     }
