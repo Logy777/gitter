@@ -70,10 +70,11 @@ pipeline {
             steps { 
                 echo 'pushing the new report.txt..'
                 sh """
+                git checkout uploaded
                 git add report.txt
                 sudo chmod 664 .git/COMMIT_EDITMSG
                 sudo git commit -m "report.txt upload"
-                git push origin master
+                git push origin uploaded
                 """
             }
         }
