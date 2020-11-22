@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'installing nmap & scaning..'
                 sh """
-                sudo yum install nmap -y
+                sudo apt-get install nmap -y
                 date > report.txt
                 echo -e "\\n" >> report.txt
                 nmap -sP 192.168.100.1/24 | grep -E "([0-9]{1,3}[\\.]){3}[0-9]{1,3}|done" >> report.txt
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo 'removing nmap..'
                 sh """
-                sudo yum remove nmap -y
+                sudo apt-get remove nmap -y
                 """
             }
         }
@@ -44,7 +44,7 @@ pipeline {
                 sh """
                 wget https://bintray.com/ookla/rhel/rpm -O bintray-ookla-rhel.repo
                 sudo mv bintray-ookla-rhel.repo /etc/yum.repos.d/
-                sudo yum install speedtest -y
+                sudo apt-get install speedtest -y
                 """
             }
         }
@@ -61,7 +61,7 @@ pipeline {
             steps {
                 echo 'removing speedtest..'
                 sh """
-                rpm -qa | grep speedtest | xargs -I {} sudo yum -y remove {}
+                rpm -qa | grep speedtest | xargs -I {} sudo apt-get -y remove {}
                 """
             }
         }
